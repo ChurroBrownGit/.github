@@ -27,8 +27,8 @@ def timeline():
     player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, player_count = playernames(player_count, botsOn)
     begin, firstturnplayer, players = instructions(player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name)
     deck = shuffledeck(cards)
-    play(firstturnplayer, player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, cards, deck, player_count, players)
-    winner()
+    is_game_over = play(firstturnplayer, player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, cards, deck, player_count, players)
+    winner(is_game_over)
 
 def showGamemenu(): #COMPLETE
     ("Welcome to Timeline!")
@@ -201,7 +201,7 @@ def instructions(player1name, player2name, player3name, player4name, player5name
                 if item != 0:
                     players.append(item)
             print(players)
-            firstturnplayer = random.choice(players)
+            firstturnplayer = player1name #HEY JOEL CHANGE THIS TO random.choice(players) AFTER TESTING !!!!!!!!
             print(firstturnplayer)
             print(str(firstturnplayer) + " will have the first turn.")
         elif begin.lower() == "n":
@@ -214,7 +214,7 @@ def instructions(player1name, player2name, player3name, player4name, player5name
             for item in seats:
                 if item != 0:
                     players.append(item)
-            firstturnplayer = random.choice(players)
+            firstturnplayer = player1name #HEY JOEL CHANGE THIS TO random.choice(players) AFTER TESTING !!!!!!!!
             print(str(firstturnplayer) + " will have the first turn.")
         elif begin.lower() == "n":
             instructions(player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name)
@@ -234,14 +234,31 @@ def play(firstturnplayer, player1name, player2name, player3name, player4name, pl
     player6cards = []
     player7cards = []
     player8cards = []
-    for item in range(9):
+    for item in range(1):
         card = deck.pop()
         player1cards.append(card)
-        print(player1cards["title"])
+        #PRINTS ALL THE CARDS OR WHATEVER IDK
+        show_player1_cards = print(player1cards["title"])
+        show_player2_cards = print(player2cards["title"])
+        show_player3_cards = print(player3cards["title"])
+        show_player4_cards = print(player4cards["title"])
+        show_player5_cards = print(player5cards["title"])
+        show_player6_cards = print(player6cards["title"])
+        show_player7_cards = print(player7cards["title"])
+        show_player8_cards = print(player8cards["title"])
+    #PLAYER 1 CARD CHECK (The others can suck it)
+    if len(player1cards) == 20:
+        print("Ending game.")
+        is_game_over = True 
+    else:
+        print(player1name + " has " + len(player1cards) + ". Keep Playing!")
+        is_game_over = False
+    if is_game_over == True:
+        return is_game_over
+    else:
+        return is_game_over
 
-        
-
-def winner():
+def winner(is_game_over):
     print("The winner is: ")
 
 
