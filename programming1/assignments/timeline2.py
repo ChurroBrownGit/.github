@@ -27,7 +27,8 @@ def timeline():
     player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, player_count = playernames(player_count, botsOn)
     begin, firstturnplayer, players = instructions(player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name)
     deck = shuffledeck(cards)
-    is_game_over = play(firstturnplayer, player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, cards, deck, player_count, players)
+    player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over = play(firstturnplayer, player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, cards, deck, player_count, players)
+    position = is_valid_placement(player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card)
     winner(is_game_over)
 
 def showGamemenu(): #COMPLETE
@@ -201,7 +202,7 @@ def instructions(player1name, player2name, player3name, player4name, player5name
                 if item != 0:
                     players.append(item)
             print(players)
-            firstturnplayer = player1name #HEY JOEL CHANGE THIS TO random.choice(players) AFTER TESTING !!!!!!!!
+            firstturnplayer = random.choice(players)
             print(firstturnplayer)
             print(str(firstturnplayer) + " will have the first turn.")
         elif begin.lower() == "n":
@@ -214,7 +215,7 @@ def instructions(player1name, player2name, player3name, player4name, player5name
             for item in seats:
                 if item != 0:
                     players.append(item)
-            firstturnplayer = player1name #HEY JOEL CHANGE THIS TO random.choice(players) AFTER TESTING !!!!!!!!
+            firstturnplayer = random.choice(players)
             print(str(firstturnplayer) + " will have the first turn.")
         elif begin.lower() == "n":
             instructions(player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name)
@@ -249,7 +250,8 @@ def play(firstturnplayer, player1name, player2name, player3name, player4name, pl
     #PLAYER 1 CARD CHECK (The others can suck it)
     if len(player1cards) == 20:
         print("Ending game.")
-        is_game_over = True 
+        is_game_over = True
+        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards 
     else:
         print(player1name + " has " + len(player1cards) + ". Keep Playing!")
         is_game_over = False
@@ -257,6 +259,22 @@ def play(firstturnplayer, player1name, player2name, player3name, player4name, pl
         return is_game_over
     else:
         return is_game_over
+
+def is_valid_placement(player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, position):
+    print(card["title"])
+    print(player1cards)
+    cardinputs = input("Left or Right of this card?")
+    if cardinputs == "left".lower():
+        if card(["year"]) < player1cards[1]["year"]:
+            return False
+        else:
+            return True
+    if cardinputs == "right".lower():
+        if card(["year"]) > player1cards[1]["year"]:
+            return False
+    else:
+        return True
+
 
 def winner(is_game_over):
     print("The winner is: ")
