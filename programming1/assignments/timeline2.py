@@ -239,29 +239,29 @@ def play(firstturnplayer, player1name, player2name, player3name, player4name, pl
         card = deck.pop()
         player1cards.append(card)
         #PRINTS ALL THE CARDS OR WHATEVER IDK
-        show_player1_cards = print(player1cards["title"])
-        show_player2_cards = print(player2cards["title"])
-        show_player3_cards = print(player3cards["title"])
-        show_player4_cards = print(player4cards["title"])
-        show_player5_cards = print(player5cards["title"])
-        show_player6_cards = print(player6cards["title"])
-        show_player7_cards = print(player7cards["title"])
-        show_player8_cards = print(player8cards["title"])
+        show_player1_cards = print(player1cards)
+        show_player2_cards = print(player2cards)
+        show_player3_cards = print(player3cards)
+        show_player4_cards = print(player4cards)
+        show_player5_cards = print(player5cards)
+        show_player6_cards = print(player6cards)
+        show_player7_cards = print(player7cards)
+        show_player8_cards = print(player8cards)
     #PLAYER 1 CARD CHECK (The others can suck it)
     if len(player1cards) == 20:
         print("Ending game.")
         is_game_over = True
-        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards 
+        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over 
     else:
-        print(player1name + " has " + len(player1cards) + ". Keep Playing!")
+        print(player1name + " has " + str(len(player1cards)) + ". Keep Playing!")
         is_game_over = False
     if is_game_over == True:
-        return is_game_over
+        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over
     else:
-        return is_game_over
+        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over
 
-def is_valid_placement(player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, position):
-    print(card["title"])
+def is_valid_placement(player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card):
+    print(card["title", "description"])
     print(player1cards)
     cardinputs = input("Left or Right of this card?")
     if cardinputs == "left".lower():
@@ -270,7 +270,7 @@ def is_valid_placement(player1cards, player2cards, player3cards, player4cards, p
         else:
             return True
     if cardinputs == "right".lower():
-        if card(["year"]) > player1cards[1]["year"]:
+        if card["year"] > player1cards[1]["year"]:
             return False
     else:
         return True
