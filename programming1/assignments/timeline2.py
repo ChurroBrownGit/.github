@@ -227,13 +227,13 @@ def shuffledeck(cards): #COMPLETE
 
 def play(firstturnplayer, player1name, player2name, player3name, player4name, player5name, player6name, player7name, player8name, botsOn, cards, deck, player_count, players):
     print("Playing Game")
-    player1cards = []
-    player2cards = []
-    player3cards = []
-    player4cards = []
-    player5cards = []
-    player6cards = []
-    player7cards = []
+    player1cards = [],
+    player2cards = [],
+    player3cards = [],
+    player4cards = [],
+    player5cards = [],
+    player6cards = [],
+    player7cards = [],
     player8cards = []
     for item in range(1):
         card = deck.pop()
@@ -251,21 +251,21 @@ def play(firstturnplayer, player1name, player2name, player3name, player4name, pl
     if len(player1cards) == 20:
         print("Ending game.")
         is_game_over = True
-        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over 
+        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards 
     else:
         print(player1name + " has " + str(len(player1cards)) + ". Keep Playing!")
         is_game_over = False
     if is_game_over == True:
-        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over
+        return is_game_over
     else:
-        return player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, is_game_over
+        return is_game_over
 
-def is_valid_placement(player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card):
-    print(card["title", "description"])
+def is_valid_placement(player1cards, player2cards, player3cards, player4cards, player5cards, player6cards, player7cards, player8cards, card, position):
+    print(card["title"])
     print(player1cards)
     cardinputs = input("Left or Right of this card?")
     if cardinputs == "left".lower():
-        if card(["year"]) < player1cards[1]["year"]:
+        if card["year"] < player1cards[1]["year"]:
             return False
         else:
             return True
