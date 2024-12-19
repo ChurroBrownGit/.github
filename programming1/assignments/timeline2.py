@@ -35,8 +35,16 @@ def showGamemenu(): #COMPLETE
     ("Welcome to Timeline!")
     player_count = int(input("How many players are playing? "))    
     cards = []
-    with open('cards.json') as f:
-        cards = json.load(f)
+    deck = int(input("Which deck would you like?\nDeck 1: Video Game Consoles\nDeck 2: N/A\nDeck 3: N/A\n(Type 1,2, or 3)"))
+    if deck == "1":
+        with open('cards.json') as f:
+            cards = json.load(f)
+    if deck == "2":
+        with open('cards1.json') as f:
+            cards = json.load(f)
+    if deck == "3":
+        with open('cards2.json') as f:
+            cards = json.load(f)
     return player_count, cards
 
 def botSetup(player_count): #COMPLETE
